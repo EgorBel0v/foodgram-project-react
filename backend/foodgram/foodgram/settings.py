@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b85op0q5cib8+^hxaxr=7jmt8#k3vh4oh3c-983f14dpkm#6_d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,3 +139,19 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+# DJOSER = {
+#     'LOGIN_FIELD': 'email',
+#     'HIDE_USERS': False,
+#     'SERIALIZERS': {
+#         'user_create': 'api.serializers.UserSignUpSerializer',  # Используем наш сериализатор для регистрации пользователя
+#         'user': 'api.serializers.UserGetSerializer',  # Используем другой сериализатор для получения информации о пользователе
+#         'current_user': 'api.serializers.UserGetSerializer',  # Используем также другой сериализатор для текущего пользователя
+#     },
+#     'PERMISSIONS': {
+#         'user_list': ['rest_framework.permissions.AllowAny'],
+#         'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
+#     }
+# }
+
+EMPTY_VALUE = 'ПУСТО'
