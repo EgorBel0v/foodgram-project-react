@@ -140,18 +140,5 @@ REST_FRAMEWORK = {
     ],
 }
 
-# DJOSER = {
-#     'LOGIN_FIELD': 'email',
-#     'HIDE_USERS': False,
-#     'SERIALIZERS': {
-#         'user_create': 'api.serializers.UserSignUpSerializer',  # Используем наш сериализатор для регистрации пользователя
-#         'user': 'api.serializers.UserGetSerializer',  # Используем другой сериализатор для получения информации о пользователе
-#         'current_user': 'api.serializers.UserGetSerializer',  # Используем также другой сериализатор для текущего пользователя
-#     },
-#     'PERMISSIONS': {
-#         'user_list': ['rest_framework.permissions.AllowAny'],
-#         'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
-#     }
-# }
 
 EMPTY_VALUE = 'ПУСТО'
