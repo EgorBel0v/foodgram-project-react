@@ -54,14 +54,17 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
     ingredients = IngredientSerializer(many=True)
-    tags = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all(), many=True)
+    tags = serializers.PrimaryKeyRelatedField(
+        queryset=Tag.objects.all(),
+        many=True
+    )
     image = serializers.ImageField()
 
     class Meta:
         model = Recipe
         fields = (
-            'ingredients', 'tags', 'image', 'name', 'description', 'cooking_time'
-        )
+            'ingredients', 'tags', 'image', 'name',
+            'description', 'cooking_time')
 
 
 class UserSubscriptionsSerializer(serializers.ModelSerializer):
@@ -69,7 +72,8 @@ class UserSubscriptionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'id', 'username', 'first_name', 'last_name', 'is_subscribed')
+        fields = ('email', 'id', 'username', 'first_name',
+                  'last_name', 'is_subscribed')
 
     def get_is_subscribed(self, obj):
         request = self.context.get('request')
