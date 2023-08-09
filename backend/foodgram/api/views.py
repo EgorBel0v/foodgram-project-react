@@ -3,7 +3,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from recipes.models import Ingredient, Tag, Recipe
 from rest_framework import viewsets, filters
 from api.filters import IngredientFilter
-from api.serializers import IngredientSerializer, TagSerialiser, RecipeSerializer, RecipeCreateSerializer, UserSubscriptionsSerializer
+from api.serializers import (IngredientSerializer, TagSerialiser,
+                             RecipeSerializer, RecipeCreateSerializer,
+                             UserSubscriptionsSerializer)
 from api.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
@@ -63,7 +65,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         permission_classes=[IsAuthenticated, ]
     )
     def shopping_cart(self, request, pk=None):
-        # Implement your logic for adding/removing a recipe from shopping cart here
+        # Implement your logic for adding/removing
+        # a recipe from shopping cart here
         return Response(status=status.HTTP_200_OK)
 
     @action(
@@ -72,13 +75,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
         permission_classes=[IsAuthenticated, ]
     )
     def update_recipe(self, request, pk=None):
-        recipe = self.get_object()    
+        recipe = self.get_object()
         # Проверяем, что текущий пользователь является автором рецепта
         if recipe.author != request.user:
             return Response(
                 {"detail": "Недостаточно прав для выполнения операции"},
                 status=status.HTTP_403_FORBIDDEN
-            )     
+            )
         serializer = RecipeCreateSerializer(
             recipe,
             data=request.data,
@@ -122,7 +125,10 @@ class UserSubscriptionsViewSet(viewsets.ReadOnlyModelViewSet):
     def subscribe(self, request, pk=None):
         author = self.get_object()
         if author == request.user:
-            return Response({"detail": "Нельзя подписываться на самого себя!"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"detail": "Нельзя подписываться на самого себя!"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         Follow.objects.get_or_create(user=request.user, author=author)
         return Response(status=status.HTTP_201_CREATED)
@@ -132,8 +138,3 @@ class UserSubscriptionsViewSet(viewsets.ReadOnlyModelViewSet):
         author = self.get_object()
         Follow.objects.filter(user=request.user, author=author).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-

@@ -9,11 +9,11 @@ class Ingredient(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название ингредиента'
-        )
+    )
     measurement_unit = models.CharField(
         max_length=100,
         verbose_name='Единица измерения'
-        )
+    )
 
     class Meta:
         verbose_name = 'Ингредиент'
@@ -28,11 +28,11 @@ class Tag(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название тега'
-        )
+    )
     color = models.CharField(
         max_length=15,
         verbose_name='Цвет тега'
-        )
+    )
     slug = models.SlugField(
         'Слаг',
         max_length=200,
@@ -54,18 +54,18 @@ class Recipe(models.Model):
         on_delete=models.CASCADE,
         related_name='recipes',
         verbose_name='автор',
-        )
+    )
     name = models.CharField(
         max_length=200,
         verbose_name='Название рецепта'
-        )
+    )
     image = models.ImageField(
         upload_to='recipes/',
         verbose_name='Изображение'
-        )
+    )
     description = models.TextField(
         verbose_name='Описание рецепта'
-        )
+    )
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredient',
@@ -74,14 +74,14 @@ class Recipe(models.Model):
     tags = models.ManyToManyField(
         Tag,
         verbose_name='Теги'
-        )
+    )
     cooking_time = models.PositiveIntegerField(
         verbose_name='Время приготовления (в минутах)'
-        )
+    )
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации'
-        )
+    )
 
     class Meta:
         ordering = ['-pub_date']
