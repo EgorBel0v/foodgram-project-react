@@ -30,11 +30,12 @@ class Tag(models.Model):
         verbose_name='Название тега'
     )
     color = models.CharField(
-        max_length=15,
-        verbose_name='Цвет тега'
+        max_length=7,
+        verbose_name='Цвет тега в HEX',
+        help_text='Введите цвет в формате HEX (#RRGGBB)'
     )
     slug = models.SlugField(
-        'Слаг',
+        'Поле для slug',
         max_length=200,
         unique=True
     )
@@ -63,7 +64,7 @@ class Recipe(models.Model):
         upload_to='recipes/',
         verbose_name='Изображение'
     )
-    description = models.TextField(
+    text = models.TextField(
         verbose_name='Описание рецепта'
     )
     ingredients = models.ManyToManyField(
