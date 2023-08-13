@@ -19,7 +19,7 @@ class Command(BaseCommand):
             help="Django app name that the model is connected to"
         )
 
-    def handle(self, *args, **options):
+    def process(self, *args, **options):
         file_path = options['path']
         model = apps.get_model(options['app_name'], options['model_name'])
         with open(file_path, 'rt', encoding='utf-8') as csv_file:
