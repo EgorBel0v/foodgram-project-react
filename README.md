@@ -144,7 +144,9 @@ http://localhost/
 ### API:
 
 * Запустите проект, после чего перейдите  по ссылке
-* http://localhost/api/docs/redoc.html
+http://localhost/api/docs/redoc.html
+
+Откроется документация со всеми доступными эндпоинтами и методами.
 
 ### Автор проекта
 
