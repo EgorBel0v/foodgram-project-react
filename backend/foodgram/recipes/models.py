@@ -4,8 +4,6 @@ from django.core.validators import MinValueValidator
 
 
 class Ingredient(models.Model):
-    """ Модель ингридиента, создаем ее первую, без нее
-     нельзя создать модель рецепта. """
     name = models.CharField(
         max_length=100,
         verbose_name='Название ингредиента'
@@ -24,17 +22,17 @@ class Ingredient(models.Model):
 
 
 class Tag(models.Model):
-    """ модель Тегов."""
     name = models.CharField(
         max_length=100,
         verbose_name='Название тега'
     )
     color = models.CharField(
-        max_length=15,
-        verbose_name='Цвет тега'
+        max_length=7,
+        verbose_name='Цвет тега в HEX',
+        help_text='Введите цвет в формате HEX (#RRGGBB)'
     )
     slug = models.SlugField(
-        'Слаг',
+        'Поле для slug',
         max_length=200,
         unique=True
     )
@@ -48,7 +46,6 @@ class Tag(models.Model):
 
 
 class Recipe(models.Model):
-    """ Модель рецепта."""
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -63,7 +60,7 @@ class Recipe(models.Model):
         upload_to='recipes/',
         verbose_name='Изображение'
     )
-    description = models.TextField(
+    text = models.TextField(
         verbose_name='Описание рецепта'
     )
     ingredients = models.ManyToManyField(
@@ -93,7 +90,6 @@ class Recipe(models.Model):
 
 
 class RecipeIngredient(models.Model):
-    """ Модель игридиентов в рецепте."""
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
@@ -122,7 +118,6 @@ class RecipeIngredient(models.Model):
 
 
 class Favorite(models.Model):
-    """ Модель списка избранного."""
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -156,7 +151,6 @@ class Favorite(models.Model):
 
 
 class ShoppingList(models.Model):
-    """ Модель списка покупок."""
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

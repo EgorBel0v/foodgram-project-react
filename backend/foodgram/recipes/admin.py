@@ -37,8 +37,6 @@ class RecipeAdmin(admin.ModelAdmin):
     ]
 
     def favorites_count(self, obj):
-        """ Возвращает количество пользователей,
-        добавивших рецепт в избранное."""
         return obj.favorites.count()
 
 
