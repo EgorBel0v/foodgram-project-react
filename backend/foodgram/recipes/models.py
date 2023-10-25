@@ -1,6 +1,12 @@
 from django.db import models
 from users.models import User
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
+
+
+def validate_positive(value):
+    if value <= 0:
+        raise ValidationError('Время приготовления должно быть больше 0')
 
 
 class Ingredient(models.Model):
@@ -73,7 +79,8 @@ class Recipe(models.Model):
         verbose_name='Теги'
     )
     cooking_time = models.PositiveIntegerField(
-        verbose_name='Время приготовления (в минутах)'
+        verbose_name='Время приготовления (в минутах)',
+        validators=[validate_positive]
     )
     pub_date = models.DateTimeField(
         auto_now_add=True,

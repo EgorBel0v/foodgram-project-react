@@ -30,5 +30,5 @@ typing_extensions==4.7.1
 tzdata==2023.3
 urllib3==2.0.4
 pillow
-psycopg2-binary~=2.8.6
+psycopg2-binary
 python-dotenv

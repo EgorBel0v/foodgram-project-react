@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -92,6 +93,18 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', '5432')
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+#         'NAME': os.getenv('DB_NAME', 'postgres'),
+#         'USER': os.getenv('POSTGRES_USER', 'postgres'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+#         'HOST': os.getenv('DB_HOST', 'localhost'),  # Измените на "localhost"
+#         'PORT': os.getenv('DB_PORT', '5432')
+#     }
+# }
+
 
 AUTH_USER_MODEL = 'users.User'
 
